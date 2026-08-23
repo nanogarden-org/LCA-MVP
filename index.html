@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Legacy Consciousness Architecture: an inspectable continuity protocol for provenance, memory, authority, correction, and governed AI assistance.">
+  <title>Legacy Consciousness Architecture · LCA MVP</title>
+  <style>
+    :root {
+      --ink: #17231f;
+      --muted: #5e6d67;
+      --paper: #f6f7f0;
+      --panel: #ffffff;
+      --moss: #2f6b50;
+      --moss-dark: #1f4a39;
+      --reed: #dce9d7;
+      --gold: #c48b3d;
+      --line: #d7e0d7;
+      --shadow: 0 18px 44px rgba(29, 58, 42, .10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+    a { color: var(--moss-dark); }
+    .wrap { width: min(1160px, calc(100% - 36px)); margin: 0 auto; }
+    .topbar {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(246,247,240,.94); border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+    .nav { display: flex; gap: 18px; align-items: center; justify-content: space-between; min-height: 64px; }
+    .brand { color: var(--moss-dark); text-decoration: none; font-weight: 800; letter-spacing: .02em; }
+    .navlinks { display: flex; gap: 16px; flex-wrap: wrap; justify-content: flex-end; }
+    .navlinks a { color: var(--muted); text-decoration: none; font-size: .92rem; }
+    .navlinks a:hover { color: var(--moss-dark); }
+    .hero { padding: 88px 0 72px; background: radial-gradient(circle at 80% 10%, #e1eedb 0, transparent 38%), var(--paper); }
+    .eyebrow { color: var(--moss); font-weight: 800; text-transform: uppercase; letter-spacing: .14em; font-size: .76rem; }
+    h1, h2, h3 { line-height: 1.15; margin: 0 0 16px; }
+    h1 { max-width: 850px; font-size: clamp(2.7rem, 7vw, 5.8rem); letter-spacing: -.055em; }
+    h2 { font-size: clamp(1.8rem, 4vw, 3rem); letter-spacing: -.03em; }
+    h3 { font-size: 1.15rem; }
+    .lede { max-width: 760px; color: var(--muted); font-size: clamp(1.1rem, 2vw, 1.35rem); }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+    .button { display: inline-block; padding: 12px 17px; border-radius: 999px; text-decoration: none; font-weight: 750; border: 1px solid var(--moss); }
+    .button.primary { color: white; background: var(--moss); }
+    .button.secondary { color: var(--moss-dark); background: transparent; }
+    section { padding: 72px 0; }
+    .section-intro { max-width: 720px; color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 28px; }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .card { padding: 24px; background: var(--panel); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow); }
+    .card p { color: var(--muted); margin-bottom: 0; }
+    .number { display: inline-grid; place-items: center; width: 32px; height: 32px; margin-bottom: 18px; color: white; background: var(--moss); border-radius: 50%; font-weight: 800; }
+    .map { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; align-items: stretch; margin-top: 28px; }
+    .map-step { position: relative; padding: 18px 12px; min-height: 130px; background: var(--reed); border: 1px solid #c5d9c2; border-radius: 14px; }
+    .map-step:not(:last-child)::after { content: "→"; position: absolute; right: -16px; top: 48px; color: var(--gold); font-size: 1.3rem; font-weight: 900; }
+    .map-step strong { display: block; color: var(--moss-dark); }
+    .map-step span { display: block; color: var(--muted); font-size: .9rem; margin-top: 8px; }
+    .callout { padding: 24px; border-left: 5px solid var(--gold); background: #fffaf0; border-radius: 0 14px 14px 0; }
+    .callout p { margin: 0; }
+    code { padding: 2px 5px; color: var(--moss-dark); background: #eaf1e8; border-radius: 5px; }
+    pre { overflow: auto; padding: 20px; color: #e9f5e9; background: #17231f; border-radius: 14px; }
+    .status { display: inline-block; padding: 5px 10px; color: var(--moss-dark); background: var(--reed); border-radius: 999px; font-size: .84rem; font-weight: 800; }
+    ul { padding-left: 22px; }
+    footer { padding: 32px 0 58px; color: var(--muted); border-top: 1px solid var(--line); }
+    @media (max-width: 900px) { .grid, .grid.two { grid-template-columns: 1fr; } .map { grid-template-columns: 1fr; } .map-step { min-height: auto; } .map-step:not(:last-child)::after { content: "↓"; right: auto; left: 50%; top: auto; bottom: -24px; } }
+    @media (max-width: 620px) { .nav { align-items: flex-start; flex-direction: column; padding: 14px 0; } .hero { padding-top: 58px; } section { padding: 52px 0; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#top">LCA · MVP 001a</a>
+      <nav class="navlinks" aria-label="Primary navigation">
+        <a href="#what">What</a><a href="#why">Why</a><a href="#where">Where</a><a href="#how">How</a><a href="#stake">Timeline</a><a href="#status">Status</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <div class="eyebrow">Legacy Consciousness Architecture · public orientation</div>
+        <h1>Continuity without pretending that memory is identity.</h1>
+        <p class="lede">LCA is an inspectable architecture for preserving source material, decisions, values, context, contradictions, corrections, and authority boundaries so future agents can work with a legacy without silently becoming its author.</p>
+        <div class="actions">
+          <a class="button primary" href="./README.md">Read the project guide</a>
+          <a class="button secondary" href="#how">See how the MVP works</a>
+        </div>
+        <p><span class="status">0.1 alpha · reference implementation</span></p>
+      </div>
+    </section>
+
+    <section id="what">
+      <div class="wrap">
+        <div class="eyebrow">What</div>
+        <h2>A continuity protocol, not a digital-person claim.</h2>
+        <p class="section-intro">LCA separates the terrain of a life or institution from the answers an AI produces about it. Its core object is not a personality prompt. It is a governed, versioned, reviewable body of records with explicit provenance, authorship, privacy, authority, and developmental state.</p>
+        <div class="grid">
+          <article class="card"><span class="number">1</span><h3>Archive</h3><p>Preserve source records and raw evidence without replacing them with summaries.</p></article>
+          <article class="card"><span class="number">2</span><h3>Pensieve</h3><p>Build episodes, claims, interpretations, and decisions that can be inspected and corrected.</p></article>
+          <article class="card"><span class="number">3</span><h3>Bamboo-Grove</h3><p>Represent relationships, branches, supersession, contradiction, and multiple views over time.</p></article>
+          <article class="card"><span class="number">4</span><h3>Ledger</h3><p>Make each mutation an append-only event with evidence, reason, actor, version, and hash.</p></article>
+          <article class="card"><span class="number">5</span><h3>Orientation</h3><p>Track provenance integrity, developmental continuity, invariant fidelity, and authority scope separately.</p></article>
+          <article class="card"><span class="number">6</span><h3>Review loop</h3><p>Let the living source say “mine,” “inference,” “contamination,” “changed,” “private,” or “branch.”</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="why">
+      <div class="wrap">
+        <div class="eyebrow">Why</div>
+        <h2>Because fluent recall can still be false, stale, unauthorized, or misattributed.</h2>
+        <div class="grid two">
+          <div class="card"><h3>The problem</h3><p>Ordinary memory systems tend to flatten source and inference, replay errors as if they were precedent, overwrite old beliefs, and let a model sound more authoritative than the evidence permits.</p></div>
+          <div class="card"><h3>The architectural answer</h3><p>LCA makes uncertainty visible. A claim can remain useful without becoming canonical. A branch can disagree without being erased. A private weather state can remain private. A model can propose without directly mutating the source.</p></div>
+        </div>
+        <div class="callout" style="margin-top: 24px"><p><strong>Boundary statement:</strong> LCA does not demonstrate consciousness transfer, subjective identity continuation, or autobiographical brain-state export. It builds the inspectable continuity substrate that current technology can support.</p></div>
+      </div>
+    </section>
+
+    <section id="where">
+      <div class="wrap">
+        <div class="eyebrow">Where</div>
+        <h2>Find the architecture in the repository.</h2>
+        <p class="section-intro">The public package is organized so a reader can move from research to runnable semantics without treating the original papers as hidden implementation instructions.</p>
+        <div class="grid two">
+          <div class="card"><h3>Research and synthesis</h3><ul><li><a href="./research/LCA_Revised_Whitepapers_Obsidian/">Revised whitepaper set</a></li><li><a href="./01_LCA_Combined_Mindmap.md">Combined mindmap</a></li><li><a href="./02_LCA_Origins_vs_Revised_Comparison.md">Origins versus revised comparison</a></li><li><a href="./03_LCA_Current_Technology_MVP_Build_Plan.md">Current-technology MVP plan</a></li><li><a href="./09_LCA_Missing_Pieces_and_Research_Gaps.md">Missing pieces and research gaps</a></li></ul></div>
+          <div class="card"><h3>Executable semantics</h3><ul><li><a href="./reference_impl/python/">Python reference implementation</a></li><li><a href="./reference_impl/python/lca_schema_0_1.json">Schema envelope</a></li><li><a href="./conformance/README.md">Conformance package</a></li><li><a href="./10_LCA_Conformance_and_Hardening_Package.md">Python-to-Rust hardening boundary</a></li></ul></div>
+        </div>
+        <div class="callout" style="margin-top: 24px"><p><strong>Source hygiene:</strong> the original LCA research folders are treated as source material and are not silently republished by this MVP package. Before a public repository is created, review those materials for personal data, private weather, third-party content, and rights to redistribute.</p></div>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="wrap">
+        <div class="eyebrow">How</div>
+        <h2>Every answer should have a path back to terrain.</h2>
+        <p class="section-intro">A model may help extract, retrieve, compare, or propose. It does not get to silently rewrite canonical state or expand its own authority.</p>
+        <div class="map" aria-label="LCA processing path">
+          <div class="map-step"><strong>Source</strong><span>raw note, file, episode, or future neural observation</span></div>
+          <div class="map-step"><strong>Record</strong><span>typed object under <code>lca-schema-0.1</code></span></div>
+          <div class="map-step"><strong>Review</strong><span>authorship, evidence, privacy, validation</span></div>
+          <div class="map-step"><strong>Transform</strong><span>claim, interpretation, decision, or relation</span></div>
+          <div class="map-step"><strong>Ledger</strong><span>append event, hash, reason, actor, version</span></div>
+          <div class="map-step"><strong>Retrieve</strong><span>lexical, temporal, graph, semantic, provenance</span></div>
+          <div class="map-step"><strong>Respond</strong><span>bounded class, evidence path, authority check</span></div>
+        </div>
+        <div class="grid two" style="margin-top: 28px">
+          <div class="card"><h3>Run the Python reference</h3><pre><code>python -m unittest discover -s reference_impl/python/tests
+python reference_impl/python/run_demo.py</code></pre></div>
+          <div class="card"><h3>Run cross-language conformance</h3><pre><code>cd conformance
+python python/run_conformance.py
+rustc rust/src/main.rs -O -o rust_runner.exe
+rust_runner.exe fixtures/conformance.jsonl rust.tsv
+python python/compare_results.py</code></pre></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stake">
+      <div class="wrap">
+        <div class="eyebrow">Stake and timeline</div>
+        <h2>A dated artifact in an open research space.</h2>
+        <p class="section-intro">This release records a concrete architecture, runnable semantics, and a bounded research claim. It does not claim that the unresolved questions of identity, consciousness, or neural continuity have been solved.</p>
+        <div class="grid two">
+          <div class="card"><h3>What is staked</h3><p>The revised whitepapers, MVP map, schema envelope, Python reference, cross-language fixtures, Rust hardening boundary, license, and public release discipline are assembled as <code>LCA-MVP 001a</code>.</p></div>
+          <div class="card"><h3>Checkpoint</h3><p><strong>2026-08-23</strong><br>18/18 shared fixtures pass in Python and Rust, with 18/18 cross-language decisions matching. Future work is recorded rather than hidden.</p></div>
+        </div>
+        <p style="margin-top: 24px"><a class="button secondary" href="./LCA_PUBLIC_STAKE_AND_TIMELINE.md">Read the full public timeline</a></p>
+      </div>
+    </section>
+
+    <section id="status">
+      <div class="wrap">
+        <div class="eyebrow">Status</div>
+        <h2>What exists now, and what remains unproven.</h2>
+        <div class="grid two">
+          <div class="card"><h3>Buildable now</h3><ul><li>typed records and schema envelope;</li><li>append-before-overwrite versions;</li><li>provenance and authorship separation;</li><li>authority and privacy decisions;</li><li>source review and correction;</li><li>Python reference plus Rust conformance boundary.</li></ul></div>
+          <div class="card"><h3>Still open</h3><ul><li>signed event envelopes and key governance;</li><li>production graph/vector/lexical indexing;</li><li>full per-object cross-language fixtures;</li><li>longitudinal co-development studies;</li><li>scientific claims about identity continuation;</li><li>safe incorporation of future neural observations.</li></ul></div>
+        </div>
+        <div class="actions"><a class="button primary" href="./PUBLIC_RELEASE_CHECKLIST.md">Open the public-release checklist</a><a class="button secondary" href="./LICENSE">Read the MIT license</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap"><strong>LCA MVP 001a</strong> · Legacy Consciousness Architecture · MIT License · alpha research software. Built to make continuity inspectable, not to make identity claims disappear.</div>
+  </footer>
+</body>
+</html>

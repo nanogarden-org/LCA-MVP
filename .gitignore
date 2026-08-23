@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# Local databases and generated indexes
+*.db
+*.sqlite
+*.sqlite3
+*.index
+
+# Rust build output
+target/
+*.pdb
+rust_runner*.exe
+
+# Local test outputs
+python_conformance.json
+rust_conformance.tsv
+
+# Editors and operating systems
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
