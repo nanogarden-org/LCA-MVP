@@ -66,7 +66,7 @@ Validation at the current checkpoint:
 - 18/18 Rust conformance fixtures pass; and
 - 18/18 cross-language decision and hash comparisons match.
 
-The reference demo also completes with an intact ledger and no integrity failures. See the nested READMEs for the exact commands and the boundaries each test suite covers.
+The reference demo also completes with an intact ledger and no integrity failures. GitHub Actions runs the Python reference, demo, and cross-language conformance checks on every push and pull request to `main`. See the nested READMEs for the exact commands and the boundaries each test suite covers.
 
 This package does not demonstrate consciousness transfer, subjective identity continuation, or full autobiographical brain-state export. It demonstrates an inspectable continuity protocol that can be built with current technology.
 
