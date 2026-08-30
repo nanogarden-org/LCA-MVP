@@ -1,0 +1,62 @@
+name: LCA MVP CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  python-reference:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run Python reference tests
+        working-directory: reference_impl/python
+        run: python -m unittest discover -s tests -v
+
+      - name: Run Python reference demo
+        working-directory: reference_impl/python
+        run: python run_demo.py
+
+      - name: Run Python conformance
+        working-directory: conformance
+        run: python python/run_conformance.py --output python_conformance.json
+
+  cross-language-conformance:
+    runs-on: ubuntu-latest
+    needs: python-reference
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Run Python conformance
+        working-directory: conformance
+        run: python python/run_conformance.py --output python_conformance.json
+
+      - name: Build and run Rust conformance
+        working-directory: conformance
+        run: |
+          rustc rust/src/main.rs -O -o rust_runner
+          ./rust_runner fixtures/conformance.jsonl rust_conformance.tsv
+
+      - name: Compare Python and Rust results
+        working-directory: conformance
+        run: python python/compare_results.py --python-results python_conformance.json --rust-results rust_conformance.tsv
