@@ -18,7 +18,7 @@ LCA is a reference architecture for a governed memory and continuity system. It 
 - a provenance and transformation ledger;
 - an invariant/orientation layer;
 - authority, privacy, and rights enforcement;
-- a living-source review loop;
+- a living-source review loop; and
 - Portrait, Bud, and Branch response boundaries.
 
 The model may retrieve, compare, summarize, classify, or propose. The model may not silently become the canonical source, erase contradiction, promote an unverified memory, or grant itself authority.
@@ -57,35 +57,37 @@ The current implementation is intentionally Python-first. Rust is the hardening 
 
 ## Current status
 
-`0.1.0-alpha / MVP 001a` — runnable reference package.
+`0.1.0-alpha / MVP 001a` — runnable reference package on the public `main` branch.
 
-Verified locally:
+Validation at the current checkpoint:
 
-- 11/11 Python MVP behavior tests;
-- 18/18 Python conformance fixtures;
-- 18/18 Rust conformance fixtures;
-- 18/18 cross-language decision and hash comparisons.
+- 11/11 Python MVP behavior tests pass;
+- 18/18 Python conformance fixtures pass;
+- 18/18 Rust conformance fixtures pass; and
+- 18/18 cross-language decision and hash comparisons match.
 
-The package does not demonstrate consciousness transfer, subjective identity continuation, or full autobiographical brain-state export. It demonstrates an inspectable continuity protocol that can be built with current technology.
+The reference demo also completes with an intact ledger and no integrity failures. See the nested READMEs for the exact commands and the boundaries each test suite covers.
 
-## Public repository preparation
+This package does not demonstrate consciousness transfer, subjective identity continuation, or full autobiographical brain-state export. It demonstrates an inspectable continuity protocol that can be built with current technology.
 
-This package is prepared to become a public GitHub repository. The revised whitepaper set is included as the intended public research layer, but publication still requires a human review for private weather, personal data, third-party copyrighted material, unpublished correspondence, secrets, credentials, and any source record that was not intended for public release.
+## Public release boundaries
+
+The revised whitepaper set is included as the intended public research layer. Publication and future additions still require human review for private weather, personal data, third-party copyrighted material, unpublished correspondence, secrets, credentials, and any source record that was not intended for public release.
 
 The original LCA research folders remain provenance sources outside this MVP package. Their inclusion in a public repository should be an explicit release decision, not an automatic copy operation.
 
 ## Relationship to TurtleML
 
-LCA and [TurtleML](https://github.com/nanogarden-org/TurtleML/tree/bootstrap/0.1.0-alpha) share a contract-first direction:
+LCA and [TurtleML](https://github.com/nanogarden-org/TurtleML) share a contract-first direction:
 
 - Python proves semantics first;
 - authority is separate from knowledge;
 - provenance is explicit;
-- internals may evolve while seams remain stable;
+- internals may evolve while seams remain stable; and
 - Rust enters as a durable policy and boundary layer after the semantic tests stabilize.
 
 LCA applies that posture to continuity, memory, source review, and lineage rather than recursive edge nodes and actuator authority.
 
 ## License
 
-LCA is released under the [MIT License](./LICENSE), matching the TurtleML bootstrap branch. Copyright (c) 2026 nanogarden-org.
+LCA is released under the [MIT License](./LICENSE), matching TurtleML. Copyright (c) 2026 nanogarden-org.
