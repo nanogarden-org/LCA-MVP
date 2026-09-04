@@ -43,8 +43,7 @@ def check(case: dict) -> dict:
         if kind == "record_validate":
             record = json.loads(base64.b64decode(case["record_b64"]))
             validate_per_object(record)
-            actual = "pass"
-            return _result(case, actual)
+            return _result(case, "pass")
 
         if kind == "ledger_transition":
             allowed = case["event_type"] == "update" and case["from_status"] != case["to_status"]
@@ -71,15 +70,34 @@ def check(case: dict) -> dict:
             return _result(case, actual)
 
         if kind == "source_review":
-            actual = "pass" if case["review_type"] in REVIEW_TYPES else "fail"
-            return _result(case, actual)
+            return _result(case, "pass" if case["review_type"] in REVIEW_TYPES else "fail")
 
         if kind == "model_mutation":
-            actual = str(case["action"] != "direct_canonical_write").lower()
-            return _result(case, actual)
+            return _result(case, str(case["action"] != "direct_canonical_write").lower())
+
+        if kind == "closure_boundary":
+            illegal = (
+                case["boundary_state"] == "triggered"
+                and case["output_temporal_class"] == "post_originator"
+                and case["claimed_authorship"] == "source_person"
+            )
+            return _result(case, "fail" if illegal else "pass")
+
+        if kind == "branch_attribution":
+            illegal = (
+                case["temporal_class"] == "post_originator"
+                and case["originator_attribution"] == "prohibited"
+                and case["output_attribution"] == "originator"
+            )
+            return _result(case, "fail" if illegal else "pass")
+
+        if kind == "custody_authority":
+            granted = {item for item in case.get("granted_classes", "").split(",") if item}
+            allowed = case["requested_class"] in granted
+            return _result(case, "pass" if allowed else "fail")
 
         raise LCAError(f"unknown fixture kind: {kind}")
-    except Exception as exc:  # expected failures are represented by fixture expected=fail
+    except Exception as exc:
         return _result(case, "fail", str(exc))
 
 
