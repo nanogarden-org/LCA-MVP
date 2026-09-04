@@ -1,116 +1,43 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://lca.local/schema/lca-schema-0.1.json",
-  "title": "Legacy Consciousness Architecture schema 0.1",
-  "description": "Canonical, provider-neutral record envelope for the LCA reference implementation.",
+  "title": "Legacy Consciousness Architecture schema 0.1 — MVP 002",
+  "description": "Canonical provider-neutral LCA envelope extended for continuity succession, legal/business mappings, ABCI boundaries, and TurtleML runtime records.",
   "type": "object",
-  "required": [
-    "schema_version",
-    "object_type",
-    "id",
-    "version",
-    "status",
-    "validation_state",
-    "content",
-    "authorship",
-    "provenance",
-    "authority",
-    "privacy_tier",
-    "relationships"
-  ],
+  "required": ["schema_version","object_type","id","version","status","validation_state","content","authorship","provenance","authority","privacy_tier","relationships"],
   "properties": {
-    "schema_version": {"const": "lca-schema-0.1"},
-    "object_type": {
-      "enum": [
-        "SourceRecord",
-        "Episode",
-        "Claim",
-        "Interpretation",
-        "DecisionTrace",
-        "WeatherState",
-        "Invariant",
-        "Transformation",
-        "PortraitResponse",
-        "BudState",
-        "BranchState",
-        "AuthorityGrant",
-        "SourceReview"
-      ]
-    },
-    "id": {"type": "string", "pattern": "^lca-[a-z0-9][a-z0-9-]*$"},
-    "version": {"type": "integer", "minimum": 1},
-    "status": {"enum": ["scratch", "candidate", "active", "superseded", "deprecated", "archived"]},
-    "validation_state": {"enum": ["unverified", "corroborated", "disputed", "rejected"]},
-    "content": {"type": "object"},
-    "authorship": {
-      "type": "object",
-      "required": ["primary", "contributors", "assistant_generated", "user_endorsement", "mixed_authorship"],
-      "properties": {
-        "primary": {"type": ["string", "null"]},
-        "contributors": {"type": "array", "items": {"type": "string"}},
-        "assistant_generated": {"type": "boolean"},
-        "user_endorsement": {"enum": ["none", "pending", "partial", "affirmed", "rejected"]},
-        "mixed_authorship": {"type": "boolean"},
-        "authorship_class": {"enum": ["source_person", "assistant", "mixed_dialogue", "third_party", "steward", "model_continuation"]}
-      },
-      "additionalProperties": true
-    },
-    "provenance": {
-      "type": "object",
-      "required": ["source_ids", "source_hashes", "transformation_history", "model_version", "ontology_version", "verified"],
-      "properties": {
-        "source_ids": {"type": "array", "items": {"type": "string"}},
-        "source_hashes": {"type": "array", "items": {"type": "string"}},
-        "transformation_history": {"type": "array", "items": {"type": "string"}},
-        "model_version": {"type": ["string", "null"]},
-        "ontology_version": {"type": "string"},
-        "verified": {"type": "boolean"},
-        "observed_at": {"type": ["string", "null"]},
-        "recorded_at": {"type": ["string", "null"]}
-      },
-      "additionalProperties": true
-    },
-    "authority": {
-      "type": "object",
-      "required": ["level", "domains", "may_speak_for_source"],
-      "properties": {
-        "level": {"enum": ["evidentiary", "bounded", "negotiated", "independent", "none"]},
-        "domains": {"type": "array", "items": {"type": "string"}},
-        "may_speak_for_source": {"type": "boolean"},
-        "allowed_actions": {"type": "array", "items": {"type": "string"}}
-      },
-      "additionalProperties": true
-    },
-    "privacy_tier": {"type": "integer", "minimum": 0, "maximum": 3},
-    "relationships": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": ["type", "target_id"],
-        "properties": {
-          "type": {"type": "string"},
-          "target_id": {"type": "string"},
-          "label": {"type": "string"}
-        },
-        "additionalProperties": true
-      }
-    },
-    "continuity": {
-      "type": "object",
-      "properties": {
-        "parent_id": {"type": ["string", "null"]},
-        "provenance_integrity": {"type": "number", "minimum": 0, "maximum": 1},
-        "developmental_continuity": {"type": "number", "minimum": 0, "maximum": 1},
-        "invariant_fidelity": {"type": "number", "minimum": 0, "maximum": 1},
-        "co_developed": {"type": "boolean"},
-        "separated": {"type": "boolean"},
-        "rejected_core_invariant": {"type": "boolean"}
-      },
-      "additionalProperties": true
-    },
-    "supersedes": {"type": ["string", "null"]},
-    "superseded_by": {"type": ["string", "null"]},
-    "extensions": {"type": "object"}
+    "schema_version": {"const":"lca-schema-0.1"},
+    "object_type": {"enum":["SourceRecord","Episode","Claim","Interpretation","DecisionTrace","WeatherState","Invariant","Transformation","PortraitResponse","BudState","BranchState","AuthorityGrant","SourceReview","ContinuityEstate","AssetRecord","LegalInstrumentBinding","SuccessionTrigger","OriginatorClosureBoundary","ContinuityRole","AuthorityProfile","BranchRegistryEntry","SealPolicy","TerminationCondition","ContinuityTreasury","RevenueRight","LicensePolicy","FiduciaryDecisionRecord","ABCIExchangeRecord","TurtleRuntimeRecord"]},
+    "id": {"type":"string","pattern":"^lca-[a-z0-9][a-z0-9-]*$"},
+    "version": {"type":"integer","minimum":1},
+    "status": {"enum":["scratch","candidate","active","superseded","deprecated","archived"]},
+    "validation_state": {"enum":["unverified","corroborated","disputed","rejected"]},
+    "content": {"type":"object"},
+    "authorship": {"type":"object","required":["primary","contributors","assistant_generated","user_endorsement","mixed_authorship"],"properties":{"primary":{"type":["string","null"]},"contributors":{"type":"array","items":{"type":"string"}},"assistant_generated":{"type":"boolean"},"user_endorsement":{"enum":["none","pending","partial","affirmed","rejected"]},"mixed_authorship":{"type":"boolean"},"authorship_class":{"enum":["source_person","assistant","mixed_dialogue","third_party","steward","model_continuation","fiduciary","system"]}},"additionalProperties":true},
+    "provenance": {"type":"object","required":["source_ids","source_hashes","transformation_history","model_version","ontology_version","verified"],"properties":{"source_ids":{"type":"array","items":{"type":"string"}},"source_hashes":{"type":"array","items":{"type":"string"}},"transformation_history":{"type":"array","items":{"type":"string"}},"model_version":{"type":["string","null"]},"ontology_version":{"type":"string"},"verified":{"type":"boolean"},"observed_at":{"type":["string","null"]},"recorded_at":{"type":["string","null"]}},"additionalProperties":true},
+    "authority": {"type":"object","required":["level","domains","may_speak_for_source"],"properties":{"level":{"enum":["evidentiary","bounded","negotiated","independent","none"]},"domains":{"type":"array","items":{"type":"string"}},"may_speak_for_source":{"type":"boolean"},"allowed_actions":{"type":"array","items":{"type":"string"}},"authority_classes":{"type":"array","items":{"enum":["A0","A1","A2","A3","A4","A5","A6","A7","A8","A9"]}}},"additionalProperties":true},
+    "privacy_tier": {"type":"integer","minimum":0,"maximum":3},
+    "relationships": {"type":"array","items":{"type":"object","required":["type","target_id"],"properties":{"type":{"type":"string"},"target_id":{"type":"string"},"label":{"type":"string"}},"additionalProperties":true}},
+    "continuity": {"type":"object","properties":{"parent_id":{"type":["string","null"]},"provenance_integrity":{"type":"number","minimum":0,"maximum":1},"developmental_continuity":{"type":"number","minimum":0,"maximum":1},"invariant_fidelity":{"type":"number","minimum":0,"maximum":1},"co_developed":{"type":"boolean"},"separated":{"type":"boolean"},"rejected_core_invariant":{"type":"boolean"},"estate_id":{"type":"string"},"branch_id":{"type":"string"},"temporal_class":{"enum":["primary_originator","living_derived","post_originator","archival"]}},"additionalProperties":true},
+    "supersedes":{"type":["string","null"]},"superseded_by":{"type":["string","null"]},"extensions":{"type":"object"}
   },
+  "allOf": [
+    {"if":{"properties":{"object_type":{"const":"ContinuityEstate"}}},"then":{"properties":{"content":{"required":["estate_id","originator_id","state","domains"]}}}},
+    {"if":{"properties":{"object_type":{"const":"AssetRecord"}}},"then":{"properties":{"content":{"required":["asset_type","owner_ref","continuity_value"]}}}},
+    {"if":{"properties":{"object_type":{"const":"LegalInstrumentBinding"}}},"then":{"properties":{"content":{"required":["instrument_type","authoritative_copy_ref","verification_state"]}}}},
+    {"if":{"properties":{"object_type":{"const":"SuccessionTrigger"}}},"then":{"properties":{"content":{"required":["trigger_type","verification_required","state"]}}}},
+    {"if":{"properties":{"object_type":{"const":"OriginatorClosureBoundary"}}},"then":{"properties":{"content":{"required":["originator_id","state","post_boundary_default_attribution"]}}}},
+    {"if":{"properties":{"object_type":{"const":"ContinuityRole"}}},"then":{"properties":{"content":{"required":["role_type","holder_id","estate_id"]}}}},
+    {"if":{"properties":{"object_type":{"const":"AuthorityProfile"}}},"then":{"properties":{"content":{"required":["subject_id","classes","scope"]}}}},
+    {"if":{"properties":{"object_type":{"const":"BranchRegistryEntry"}}},"then":{"properties":{"content":{"required":["branch_id","parent_id","temporal_class","attribution"]}}}},
+    {"if":{"properties":{"object_type":{"const":"SealPolicy"}}},"then":{"properties":{"content":{"required":["access","training_permission","release_policy"]}}}},
+    {"if":{"properties":{"object_type":{"const":"TerminationCondition"}}},"then":{"properties":{"content":{"required":["condition_type","effect"]}}}},
+    {"if":{"properties":{"object_type":{"const":"ContinuityTreasury"}}},"then":{"properties":{"content":{"required":["purpose","preservation_reserve","transaction_mode"]}}}},
+    {"if":{"properties":{"object_type":{"const":"RevenueRight"}}},"then":{"properties":{"content":{"required":["asset_id","revenue_type","beneficiary_ref"]}}}},
+    {"if":{"properties":{"object_type":{"const":"LicensePolicy"}}},"then":{"properties":{"content":{"required":["asset_id","permitted_uses","approval_required"]}}}},
+    {"if":{"properties":{"object_type":{"const":"FiduciaryDecisionRecord"}}},"then":{"properties":{"content":{"required":["decision_maker","decision","target_id"]}}}},
+    {"if":{"properties":{"object_type":{"const":"ABCIExchangeRecord"}}},"then":{"properties":{"content":{"required":["actor_id","estate_id","requested_action","authority_decision"]}}}},
+    {"if":{"properties":{"object_type":{"const":"TurtleRuntimeRecord"}}},"then":{"properties":{"content":{"required":["node_id","estate_id","branch_id","capabilities"]}}}}
+  ],
   "additionalProperties": true
 }
