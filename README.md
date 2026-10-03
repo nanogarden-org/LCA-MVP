@@ -4,7 +4,20 @@
 
 > Preserve the terrain. Expose the provenance. Bound the authority. Fund the continuity. Separate succession from identity.
 
-[Read the MVP index](./00_LCA-MVP-001a_Index.md) · [Read the MVP 002 architecture](./11_LCA_Continuity_Succession_Legal_Business_Architecture.md) · [Read the MVP 002 build plan](./12_LCA_MVP_002_Build_Plan.md) · [Run the conformance package](./conformance/README.md)
+[Read the MVP index](./00_LCA-MVP-001a_Index.md) · [Read the MVP 002 architecture](./11_LCA_Continuity_Succession_Legal_Business_Architecture.md) · [Read the MVP 002 build plan](./12_LCA_MVP_002_Build_Plan.md) · [Run the conformance package](./conformance/README.md) · [Origin and challenge notes](./ORIGIN.md)
+
+## What to test first
+
+LCA is easiest to evaluate by attacking its boundaries:
+
+- Can generated material silently become primary originator evidence?
+- Can custody be mistaken for ownership or identity?
+- Can fluency be mistaken for attribution?
+- Can a branch inherit authority merely because it inherits context?
+- Can two implementations make different decisions from the same conformance fixture?
+- Can a succession role gain powers that were never externally granted?
+
+If one of those failures is reproducible, it is more valuable than a favorable description. Open an issue or supply a minimal counterexample.
 
 ## Current status
 
@@ -193,6 +206,7 @@ The demonstrator may simulate budgets, succession triggers, licensing policy, an
 6. Run the [shared Python/Rust conformance package](./conformance/README.md).
 7. Read the [ML learning and constraints](./07_LCA_ML_Learning_and_Constraints.md) before adding model training or automated promotion.
 8. Read the [public-release checklist](./PUBLIC_RELEASE_CHECKLIST.md) before publishing source material.
+9. Read [ORIGIN.md](./ORIGIN.md) for chronology, claim boundaries, and the challenge surface.
 
 ## Architecture invariant introduced by MVP 002
 
