@@ -230,3 +230,9 @@ Hardware, models, custodians, operators, trustees, and storage media may change.
 ## License
 
 LCA is released under the [MIT License](./LICENSE), matching TurtleML. Copyright (c) 2026 nanogarden-org.
+
+## Automated verification
+
+The Verification workflow runs the existing test suite on Windows and Linux with Python 3.11 and 3.12, on pull requests, pushes to `main`, and manual runs. These are reference-implementation checks, not certification of deployment or integration readiness. Runtime language choices remain open to further operating-condition tests.
+
+The workflow also compares the Python and Rust conformance outputs and preserves both result files. Passing the supplied fixtures does not establish cryptographic signature validation or behavior outside those fixtures.

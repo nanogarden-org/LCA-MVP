@@ -1,0 +1,46 @@
+name: Verification
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ['3.11', '3.12']
+    runs-on: ${{ matrix.os }}
+    env:
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Record environment
+        run: python --version
+      - name: Run regression checks
+        run: |
+          cd reference_impl/python
+          python -m unittest discover -s tests -v
+      - name: Python and Rust conformance
+        working-directory: conformance
+        shell: bash
+        run: |
+          rustc --version
+          python python/run_conformance.py --output python_conformance.json
+          rustc rust/src/main.rs -O -o rust_runner.exe
+          ./rust_runner.exe fixtures/conformance.jsonl rust_conformance.tsv
+          python python/compare_results.py --python-results python_conformance.json --rust-results rust_conformance.tsv
+      - name: Preserve conformance results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: conformance-${{ matrix.os }}-${{ matrix.python }}
+          path: |
+            conformance/python_conformance.json
+            conformance/rust_conformance.tsv
