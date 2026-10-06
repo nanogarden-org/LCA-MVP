@@ -1,5 +1,18 @@
 # Legacy Consciousness Architecture (LCA)
 
+## Hiring reviewer summary
+
+| Question | Answer |
+| --- | --- |
+| Business problem | Knowledge systems can blur original evidence, generated interpretation, custody, and authority as people, models, or operators change. |
+| Author contribution | Designed a continuity and succession architecture with a runnable 001a foundation and shared Python/Rust conformance fixtures. |
+| Working today | 001a executable foundation and narrow conformance boundary; 002 succession, estate, treasury, and integration features are architecture and implementation plans. |
+| Inspect the evidence | [Python reference](reference_impl/python/README.md) · [Conformance commands and scope](conformance/README.md) |
+| Limits | Conformance verifies selected decisions and hashes, not the entire platform or signer identity. MVP 002 originator-closure and succession features are not established as implemented by the 001a results. Software mappings do not create legal authority. |
+| Relevant assignments | Knowledge governance, continuity planning, portable records, policy boundaries, and cross-language verification. |
+
+[Engineering case study](docs/hiring-case-study.md) · [Run and challenge the work](#where-to-start)
+
 **LCA** is an inspectable continuity and succession architecture for preserving source material, decisions, values, context, contradictions, corrections, rights, assets, and authority boundaries across time.
 
 > Preserve the terrain. Expose the provenance. Bound the authority. Fund the continuity. Separate succession from identity.
@@ -8,7 +21,7 @@
 
 ## What to test first
 
-LCA is easiest to evaluate by attacking its boundaries:
+Start with the runnable 001a conformance suite for implemented decisions and hashes. Originator closure, estate succession, and runtime integrations are MVP 002 design challenges until their implementation and tests are published. LCA is easiest to evaluate by attacking its boundaries:
 
 - Can generated material silently become primary originator evidence?
 - Can custody be mistaken for ownership or identity?
