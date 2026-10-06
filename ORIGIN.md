@@ -21,7 +21,7 @@ The project does not claim ownership of archival science, digital estates, trust
 
 ## Public chronology
 
-Git history identifies artifact versions and recorded dates. Commit dates and retained snapshots alone do not establish when an artifact became publicly accessible. Public-availability claims require a separately recorded publication or archival anchor. This packet does not establish a verified first-publication date. Neither repository chronology nor publication evidence establishes universal novelty, exclusive ownership of abstract ideas, or derivation by later work.
+Git history identifies artifact versions and recorded dates. Commit dates and retained snapshots alone do not establish when an artifact became publicly accessible. Public-availability claims require a separately recorded publication or archival anchor. The first public release date is not recorded here. Neither repository chronology nor publication evidence establishes universal novelty, exclusive ownership of abstract ideas, or derivation by later work.
 
 ## Why runnable toy models and conformance fixtures matter
 
@@ -45,7 +45,7 @@ Open an issue with a minimal case, conflicting related work, or an argument that
 
 ## Evidence and challenge scope
 
-Conformance verifies selected decisions and hashes, not the entire platform or signer identity. MVP 002 originator-closure and succession features are not established as implemented by the 001a results. Software mappings do not create legal authority.
+Conformance verifies selected decisions and hashes, not the entire platform or signer identity. MVP 002 originator-closure and succession features remain planned. Software mappings do not create legal authority.
 
 [Python reference](reference_impl/python/README.md) · [Conformance commands and scope](conformance/README.md)
 
