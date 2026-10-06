@@ -21,9 +21,7 @@ The project does not claim ownership of archival science, digital estates, trust
 
 ## Public chronology
 
-Git history records when specific LCA formulations, code, fixtures, and documents became public in this repository.
-
-That supports chronology for these artifacts. It does not establish that no earlier related work exists, create legal ownership over abstract ideas, or prove that later similar work was derived from LCA.
+Git history identifies artifact versions and recorded dates. Commit dates and retained snapshots alone do not establish when an artifact became publicly accessible. Public-availability claims require a separately recorded publication or archival anchor. This packet does not establish a verified first-publication date. Neither repository chronology nor publication evidence establishes universal novelty, exclusive ownership of abstract ideas, or derivation by later work.
 
 ## Why runnable toy models and conformance fixtures matter
 
@@ -44,3 +42,13 @@ High-value counterexamples include:
 7. a failure mode where preservation succeeds technically but attribution becomes false.
 
 Open an issue with a minimal case, conflicting related work, or an argument that one of the boundaries is unnecessary or incorrectly drawn. The architecture should improve when challenged.
+
+## Evidence and challenge scope
+
+Conformance verifies selected decisions and hashes, not the entire platform or signer identity. MVP 002 originator-closure and succession features are not established as implemented by the 001a results. Software mappings do not create legal authority.
+
+[Python reference](reference_impl/python/README.md) · [Conformance commands and scope](conformance/README.md)
+
+## Submit a useful challenge
+
+[Open an issue](https://github.com/nanogarden-org/LCA-MVP/issues/new) with the version or commit SHA, invariant challenged, minimal synthetic input, commands or reasoning steps, expected versus observed behavior, and any relevant related-work link. Identify whether the challenge concerns implemented behavior or proposed architecture. Exclude private or unlicensed source material.
