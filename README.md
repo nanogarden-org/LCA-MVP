@@ -1,15 +1,15 @@
 # Legacy Consciousness Architecture (LCA)
 
-## Hiring reviewer summary
+## Project overview
 
 | Question | Answer |
 | --- | --- |
 | Business problem | Knowledge systems can blur original evidence, generated interpretation, custody, and authority as people, models, or operators change. |
-| Author contribution | Designed a continuity and succession architecture with a runnable 001a foundation and shared Python/Rust conformance fixtures. |
+| What I built | Designed a continuity and succession architecture with a runnable 001a foundation and shared Python/Rust conformance fixtures. |
 | Working today | 001a executable foundation and narrow conformance boundary; 002 succession, estate, treasury, and integration features are architecture and implementation plans. |
-| Inspect the evidence | [Python reference](reference_impl/python/README.md) · [Conformance commands and scope](conformance/README.md) |
-| Limits | Conformance verifies selected decisions and hashes, not the entire platform or signer identity. MVP 002 originator-closure and succession features are not established as implemented by the 001a results. Software mappings do not create legal authority. |
-| Relevant assignments | Knowledge governance, continuity planning, portable records, policy boundaries, and cross-language verification. |
+| Verification | [Python reference](reference_impl/python/README.md) · [Conformance commands and scope](conformance/README.md) |
+| Limits | Conformance verifies selected decisions and hashes, not the entire platform or signer identity. MVP 002 originator-closure and succession features remain planned. Software mappings do not create legal authority. |
+| Applications | Knowledge governance, continuity planning, portable records, policy boundaries, and cross-language verification. |
 
 [Engineering case study](docs/hiring-case-study.md) · [Run and challenge the work](#where-to-start)
 
